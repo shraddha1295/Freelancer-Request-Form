@@ -9,7 +9,7 @@ $res = $con->query($dquery);
 ?>
 	
 
-                        <div class="col-sm-10">
+                        <div class="col-sm-8">
                           <div class="table-responsive">
                                 <table class="table-bordered"  style="width:100%">
                                   <thead>
