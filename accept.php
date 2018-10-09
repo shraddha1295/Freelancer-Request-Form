@@ -8,7 +8,7 @@ if($_POST) {
  
     // $mstatus="approved";
  
-    $sql = "UPDATE requests SET m_status ='approved' WHERE id = $reqId";
+    $sql = "UPDATE requests SET m_status ='Approved' WHERE id = $reqId";
     if($con->query($sql) === TRUE) {
         echo "<p>Succcessfully Updated</p>";
         echo "<a href='received_request.php'><button type='button'>Back</button></a>";

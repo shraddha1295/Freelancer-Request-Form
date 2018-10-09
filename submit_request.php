@@ -53,7 +53,7 @@ echo "Manager Name: ".$manager;
 // $manager ="Soham";
 $ru_id=$_SESSION['id'];
 
-$m="pending";
+$m="Pending";
 $sql = "INSERT INTO requests (ru_id, manager, particulars, description, hq, unit, amt, m_status, f_status) VALUES ('$ru_id', '$manager', '$part', '$desc', '$hq', '$unit', '$amt', '$m', '$m')";
     if($con->query($sql)=== TRUE){
         echo "<p>New Record Successfully Created</p>";

@@ -9,7 +9,7 @@ if($_POST) {
  
    
  
-    $sql = "UPDATE requests SET m_status = 'rejected' WHERE id = $reqId";
+    $sql = "UPDATE requests SET m_status = 'Rejected' WHERE id = $reqId";
     if($con->query($sql) === TRUE) {
         echo "<p>Succcessfully Updated</p>";
         echo "<a href='received_request.php'><button type='button'>Back</button></a>";

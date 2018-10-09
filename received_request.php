@@ -4,6 +4,11 @@ include("menu.php");
 ?>
 <?php
 
+
+$dquery="SELECT particulars, description FROM requests";
+$res = $con->query($dquery);
+
+
 function getName($selectedId,$con)
 {
   $mquery="SELECT username FROM users  WHERE id = '$selectedId'";
@@ -47,49 +52,56 @@ if($_POST=="")
   </ul>
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-      <div class="col-sm-6">
-        <table border="1" cellspacing="0" cellpadding="0" style="width:100%">
-          <thead>
-            <tr>
-              <th>Request from</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            $sql="SELECT * FROM requests  WHERE m_status = 'pending' and manager= '{$_SESSION['username']}' ";
-            $res = $con->query($sql);
-                                          // print_r($res);
-                                          // exit;
+     <div class="row"> 
+      <div class="col-sm-10">
+        <div class="table-responsive">
+                <table class="table table-bordered"  style="width:100%">
+                  <thead >
+                    <tr>
+                      <th>Request From</th>
+                      <th>Request Details</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $sql="SELECT * FROM requests  WHERE m_status = 'Pending' and manager= '{$_SESSION['username']}' ";
+                    $res = $con->query($sql);
+                                                  // print_r($res);
+                                                  // exit;
 
-            if($res = $con->query($sql))
-            {
-              if($res->num_rows > 0) {
-                while($row2 = $res->fetch_assoc()) {
-                  ?>
-                  <tr>
-                    <td><?php getName($row2['ru_id'],$con) ?></td>
-                    <td><?php echo $row2['m_status']?></td>
-                    <td>
-                      <button class="btn btn-success accept" id="<?php echo $row2['id']; ?>" type='button' data-toggle="modal" data-target="myModal" >Accept</button>
-                      <button class="btn btn-danger reject" id="<?php echo $row2['id']; ?>" type='button' data-toggle="modal" data-target="myModal1" >Reject</button>
-                    </td>
-                  </tr>
-                <?php                                        }
-              } 
-            }
-            else {
-              ?>
-              <tr><td colspan='5'><center>No Data Avaliable</center></td></tr>
-              <?php
-            }
-            ?> 
+                    if($res = $con->query($sql))
+                    {
+                      if($res->num_rows > 0) {
+                        while($row2 = $res->fetch_assoc()) {
+                          ?>
+                          <tr>
+                            <td><?php getName($row2['ru_id'],$con) ?></td>
+                            <td><strong><?php echo $row2['particulars']?></strong><br>
+                            <?php echo $row2['description']?></td>
+                            <td><?php echo $row2['m_status']?></td>
+                            <td>
+                              <button class="btn btn-success glyphicon glyphicon-ok  accept" id="<?php echo $row2['id']; ?>" type='button' data-toggle="modal" data-target="myModal" ></button>
+                      <button class="btn btn-danger glyphicon glyphicon-remove reject" id="<?php echo $row2['id']; ?>" type='button' data-toggle="modal" data-target="myModal1"></button>
+                            </td>
+                              
+                            
+                          </tr>
+                        <?php                                        }
+                      } 
+                    }
+                    else {
+                      ?>
+                      <tr><td colspan='5'><center>No Data Avaliable</center></td></tr>
+                      <?php
+                    }
+                    ?> 
 
 
-          </tbody>
-        </table>
-
+                  </tbody>
+                </table>
+        </div>
         <div class="modal fade" id="myModal" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">        
@@ -123,15 +135,18 @@ if($_POST=="")
           </div>
         </div>
 
-      </div>     
+      </div> 
+      </div>
+          
     </div>
     <div id="menu1" class="tab-pane fade">
 
-      <div class="col-sm-6">
-        <table border="1" cellspacing="0" cellpadding="0" style="width:100%">
+      <div class="col-sm-10">
+        <table class="table table-bordered"  style="width:100%">
           <thead>
             <tr>
-              <th>Request To</th>
+              <th>Request From</th>
+              <th>Request Details</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -139,7 +154,7 @@ if($_POST=="")
             <?php
 
 
-            $sql="SELECT * FROM requests  WHERE m_status = 'approved' and manager= '{$_SESSION['username']}' ";;
+            $sql="SELECT * FROM requests  WHERE m_status = 'Approved' and manager= '{$_SESSION['username']}' ";;
 
 
             if($res = $con->query($sql))
@@ -150,6 +165,8 @@ if($_POST=="")
                   ?>
                   <tr>
                     <td><?php getName($row2['ru_id'],$con) ?></td>
+                    <td><strong><?php echo $row2['particulars']?></strong><br>
+                    <?php echo $row2['description']?></td>
                     <td><?php echo $row2['m_status']?></td>
                   </tr>
                 <?php                                        }
@@ -169,11 +186,12 @@ if($_POST=="")
     </div>
     <div id="menu2" class="tab-pane fade">
 
-      <div class="col-sm-6">
-        <table border="1" cellspacing="0" cellpadding="0" style="width:100%">
+      <div class="col-sm-10">
+        <table class="table table-bordered"  style="width:100%">
           <thead>
             <tr>
-              <th>Request To</th>
+              <th>Request From</th>
+              <th>Request Details</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -181,7 +199,7 @@ if($_POST=="")
             <?php
 
 
-            $sql="SELECT * FROM requests  WHERE m_status = 'rejected' and manager= '{$_SESSION['username']}' ";;
+            $sql="SELECT * FROM requests  WHERE m_status = 'Rejected' and manager= '{$_SESSION['username']}' ";;
 
 
             if($res = $con->query($sql))
@@ -192,6 +210,8 @@ if($_POST=="")
                   ?>
                   <tr>
                     <td><?php getName($row2['ru_id'],$con) ?></td>
+                    <td><strong><?php echo $row2['particulars']?></strong><br>
+                    <?php echo $row2['description']?></td>
                     <td><?php echo $row2['m_status']?></td>
                   </tr>
                 <?php                                        }
