@@ -5,7 +5,7 @@ Website: http://www.allphptricks.com/
 */
 
 
-$con = mysqli_connect("localhost","root","","req");
+$con = mysqli_connect("localhost","root","root","req");
 // Check connection
 if (mysqli_connect_errno())
   {
