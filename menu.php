@@ -15,30 +15,45 @@ include("auth.php");
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <title>Dashboard</title>
   <!-- <link rel="stylesheet" href="style.css"> -->
-  <link rel="stylesheet" href="css/style.css" />
+ <!--  <link rel="stylesheet" href="css/style.css" /> -->
   <style>
   
-table,th {
+ table,th {
             
             margin-top: 20px;
             text-align: center
         }
-
+ 
   </style>
+<!--   <script>
+    var a;
+    $(document).on('click', 'a.select', function() {
+      // alert("this is it");
+     a=$(this).parent('.one');
+     a.attr('class', 'active');
+});
+  </script> -->
 </head>
 <body>
    <div  class="col-sm-12">
-        <span class="left"><h3>Welcome <?php echo $_SESSION['username']; ?>!</h3></span>
-        <span class="right"><a href="logout.php">Logout</a></span>
+        <div class="row">
+          <div class="col-sm-12">
+               <div class="col-sm-6"> 
+                <h3>Welcome <?php echo $_SESSION['username']; ?>!</h3>
+               </div>
+               <div class="col-sm-6"> 
+                <a class="pull-right" href="logout.php">Logout</a>
+               </div>    
+          </div>
+        </div> 
         <hr/>
-        <h4>Dashboard</h4>
+         <h4>Dashboard</h4>
             <div class="col-xs-3">
-              <ul class="nav nav-tabs tabs-left sideways">
-
-                <li><a href="index.php">Home</a></li>
-                <li><a href="sent_request.php">Sent Requests</a></li>
-                <li><a href="approved_request.php">Approved Requests</a></li>
-                <li><a href="rejected_request.php">Rejected Requests</a></li>
+              <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li class="one"><a class="select" href="index.php">Home</a></li>
+                <li class="one"><a class="select" href="sent_request.php">Sent Requests</a></li>
+                <li class="one"><a class="select" href="approved_request.php">Approved Requests</a></li>
+                <li class="one"><a class="select" href="rejected_request.php">Rejected Requests</a></li>
                 <?php
                     if($_SESSION['admin'] == "Yes"){
                 ?>
