@@ -1,5 +1,5 @@
 <?php
-include("menu.php");
+require_once("menu.php");
 ?>
 <div class="col-xs-9">
   <div class="tab-content">

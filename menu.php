@@ -25,6 +25,14 @@ include("auth.php");
         }
  
   </style>
+<!--   <script>
+    var a;
+    $(document).on('click', 'a.select', function() {
+      // alert("this is it");
+     a=$(this).parent('.one');
+     a.attr('class', 'active');
+});
+  </script> -->
 </head>
 <body>
    <div  class="col-sm-12">
@@ -42,11 +50,10 @@ include("auth.php");
          <h4>Dashboard</h4>
             <div class="col-xs-3">
               <ul class="nav nav-pills nav-stacked" role="tablist">
-
-                <li class="active"><a href="index.php">Home</a></li>
-                <li><a href="sent_request.php">Sent Requests</a></li>
-                <li><a href="approved_request.php">Approved Requests</a></li>
-                <li><a href="rejected_request.php">Rejected Requests</a></li>
+                <li class="one"><a class="select" href="index.php">Home</a></li>
+                <li class="one"><a class="select" href="sent_request.php">Sent Requests</a></li>
+                <li class="one"><a class="select" href="approved_request.php">Approved Requests</a></li>
+                <li class="one"><a class="select" href="rejected_request.php">Rejected Requests</a></li>
                 <?php
                     if($_SESSION['admin'] == "Yes"){
                 ?>

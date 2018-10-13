@@ -1,6 +1,6 @@
 
 <?php
-include("menu.php");
+require_once("menu.php");
 ?>
 <?php
 
