@@ -52,12 +52,13 @@ if($_POST=="")
   </ul>
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-     <div class="row"> 
+     <div class="row">
       <div class="col-sm-10">
         <div class="table-responsive">
                 <table class="table table-bordered"  style="width:100%">
                   <thead >
                     <tr>
+                      <td>selet</td>
                       <th>Request From</th>
                       <th>Request Details</th>
                       <th>Status</th>
@@ -65,6 +66,7 @@ if($_POST=="")
                     </tr>
                   </thead>
                   <tbody>
+                      <form action="generatePdf.php" method="post">
                     <?php
                     $sql="SELECT * FROM requests  WHERE m_status = 'Pending' and manager= '{$_SESSION['username']}' ";
                     $res = $con->query($sql);
@@ -77,34 +79,40 @@ if($_POST=="")
                         while($row2 = $res->fetch_assoc()) {
                           ?>
                           <tr>
+                            <td><input type="checkbox" name="<?php echo $row2['id']; ?>" value="<?php echo $row2['id']; ?>"> </td>
                             <td><?php getName($row2['ru_id'],$con) ?></td>
                             <td><strong><?php echo $row2['particulars']?></strong><br>
                             <?php echo $row2['description']?></td>
                             <td><?php echo $row2['m_status']?></td>
                             <td>
                               <button class="btn btn-success glyphicon glyphicon-ok  accept" id="<?php echo $row2['id']; ?>" type='button' data-toggle="modal" data-target="myModal" ></button>
-                      <button class="btn btn-danger glyphicon glyphicon-remove reject" id="<?php echo $row2['id']; ?>" type='button' data-toggle="modal" data-target="myModal1"></button>
+                              <button class="btn btn-danger glyphicon glyphicon-remove reject" id="<?php echo $row2['id']; ?>" type='button' data-toggle="modal" data-target="myModal1"></button>
+
+
+
                             </td>
-                              
-                            
+
+
                           </tr>
                         <?php                                        }
-                      } 
+                      }
                     }
                     else {
                       ?>
                       <tr><td colspan='5'><center>No Data Avaliable</center></td></tr>
                       <?php
                     }
-                    ?> 
+                    ?>
 
 
                   </tbody>
+                  <input type="submit" class="btn btn-default">
+                  </form>
                 </table>
         </div>
         <div class="modal fade" id="myModal" role="dialog">
           <div class="modal-dialog">
-            <div class="modal-content">        
+            <div class="modal-content">
               <div class="modal-body">
                 <p>Do You to Proceed?</p>
               </div>
@@ -120,7 +128,7 @@ if($_POST=="")
         </div>
         <div class="modal fade" id="myModal1" role="dialog">
           <div class="modal-dialog">
-            <div class="modal-content">        
+            <div class="modal-content">
               <div class="modal-body">
                 <p>Do You to Proceed?</p>
               </div>
@@ -135,9 +143,9 @@ if($_POST=="")
           </div>
         </div>
 
-      </div> 
       </div>
-          
+      </div>
+
     </div>
     <div id="menu1" class="tab-pane fade">
 
@@ -170,18 +178,18 @@ if($_POST=="")
                     <td><?php echo $row2['m_status']?></td>
                   </tr>
                 <?php                                        }
-              } 
+              }
             }
             else {
               ?>
               <tr><td colspan='5'><center>No Data Avaliable</center></td></tr>
               <?php
             }
-            ?> 
+            ?>
 
 
           </tbody>
-        </table>  
+        </table>
       </div>
     </div>
     <div id="menu2" class="tab-pane fade">
@@ -215,21 +223,21 @@ if($_POST=="")
                     <td><?php echo $row2['m_status']?></td>
                   </tr>
                 <?php                                        }
-              } 
+              }
             }
             else {
               ?>
               <tr><td colspan='5'><center>No Data Avaliable</center></td></tr>
               <?php
             }
-            ?> 
+            ?>
 
 
           </tbody>
-        </table>  
+        </table>
       </div>
     </div>
-    
+
   </div>
 
 

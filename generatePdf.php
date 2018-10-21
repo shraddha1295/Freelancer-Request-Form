@@ -4,6 +4,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 // Create an instance of the class:
 $mpdf = new \Mpdf\Mpdf();
 $a=1552;
+print_r($_POST);
+exit;
 // Write some HTML code:
 $mpdf->WriteHTML('
 
@@ -35,7 +37,7 @@ $mpdf->WriteHTML('
   <tr>
 
                 <td >
-                   [text Sr class:sr]
+                  '.$_POST['requestId'].'
                 </td>
                 <td >
                     [text part class:part]
@@ -53,95 +55,7 @@ $mpdf->WriteHTML('
                     [text amt class:amt]
                 </td>
   </tr>
-  <tr>
 
-
-                <td >
-                   [text srno class:sr]
-                </td>
-                <td >
-                    [text Part class:part]
-                </td>
-                <td >
-                    [text Desc class:desc]
-                </td>
-                <td >
-                    [text Hrs class:hrs]
-                </td>
-                <td >
-                    [text Unit-p class:unit-p]
-                </td>
-                <td >
-                    [text Amt class:amt]
-                </td>
-
-  </tr>
-  <tr>
-
-                <td >
-                    [text Srno class:sr]
-                </td>
-                <td >
-                    [text Particulars class:part]
-                </td>
-                <td >
-                    [text Description class:desc]
-                </td>
-                <td >
-                    [text Hours class:hrs]
-                </td>
-                <td >
-                    [text Unit-Price class:unit-p]
-                </td>
-                <td >
-                    [text Amount class:amt]
-                </td>
-
-  </tr>
-  <tr>
-
-                <td >
-                    [text sr class:sr]
-                </td>
-                <td >
-                    [text particulars class:part]
-                </td>
-                <td >
-                    [text description class:desc]
-                </td>
-                <td >
-                    [text hours class:hrs]
-                </td>
-                <td >
-                    [text U-P class:unit-p]
-                </td>
-                <td >
-                    [text amount class:amt]
-                </td>
-
-  </tr>
-  <tr>
-
-                <td >
-                    [text sr-no class:sr]
-                </td>
-                <td >
-                    [text PART class:part]
-                </td>
-                <td >
-                    [text DESC class:desc]
-                </td>
-                <td >
-                    [text HRS class:hrs]
-                </td>
-                <td >
-                    [text unit-price class:unit-p]
-                </td>
-                <td >
-                    [text AMT class:amt]
-                </td>
-
-  </tr>
 </table>
 
 <div class="clearfix">
